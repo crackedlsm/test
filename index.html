@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--begin::Head-->
+  <head><base href="">
+    <meta charset="utf-8" />
+    <title>Loading... - gmod-lsm.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="https://www.gmod-lsm.com/assets/media/logos/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="https://www.gmod-lsm.com/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="https://www.gmod-lsm.com/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
+
+    .background-part{
+      position: fixed; 
+      top: -50%; 
+      left: -50%; 
+      width: 200%; 
+      height: 200%;
+    }
+    .background-part img {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0; 
+      margin: auto; 
+      min-width: 50%;
+      min-height: 50%;
+    }
+    .spinner-border{
+        -moz-border-radius: 50px/50px;
+        -webkit-border-radius: 50px 50px;
+        border-radius: 80px/80px;;
+        border:solid 21px #f00; 
+        width:100px;
+        height:100px;
+        -webkit-animation: rotation 0.65s linear infinite;
+        -moz-animation: rotation 0.65s linear infinite;
+        -ms-animation: rotation 0.65s linear infinite;
+    }
+
+    @-webkit-keyframes rotation {
+        0%   { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+    @-moz-keyframes rotation {
+        0%   { -moz-transform: rotate(0deg); }
+        100% { -moz-transform: rotate(360deg); }
+    }
+    @-ms-keyframes rotation {
+        0%   { -ms-transform: rotate(0deg); }
+        100% { -ms-transform: rotate(360deg); }
+    }
+
+    .symbol .symbol-label{
+		background-color: #F9F9F9;
+	}
+
+	.svg-icon.svg-icon-light{
+		fill: #F9F9F9;
+    color: #F9F9F9;
+	}
+
+  #launch-button{
+        color: #fff !important;
+    }
+
+
+    #launch-button:hover{
+        background-color: #5f32ed !important;
+    }
+
+    .demo-flex{
+        display: flex;
+    }
+
+    .demo-background{
+        background-color: white;
+        background-size: 40px 40px;
+        border-radius: 50%;
+        background-image:
+        linear-gradient(to right, #ddd 1px, transparent 1px),
+        linear-gradient(to bottom, #ddd 1px, transparent 1px);
+        background-position: center;
+        transition: all 2s;
+    }
+
+    .demo-background:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%,rgba(255,255,255,1) 100%);
+        border-radius: 50%;
+        position: absolute;
+        top: 0; left: 0;
+    }
+
+    .demo-background-two{
+        background-color: white;
+        background-size: 40px 40px;
+        border-radius: 50%;
+        background-position: center;
+        transition: all 2s;
+    }
+
+    .demo-background-two:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%,rgba(255,255,255,1) 100%);
+        border-radius: 50%;
+        position: absolute;
+        top: 0; left: 0;
+    }
+
+    </style>
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body id="kt_body" data-sidebar="on" class="header-fixed header-tablet-and-mobile-fixed sidebar-enabled">
+    <div id="error" style="transition: background .5s; position: fixed; z-index: 101; width: 100%; display: none; height: 100%; top: 0; left: 0; background: #181818;">
+      <span style="display: inline-block; position: absolute; left: 50%; top: 10%; margin-left: -220px; text-align: center">
+        <svg width="200px" xmlns="http://www.w3.org/2000/svg" id="uuid-07d93892-4651-454b-9f60-af7c7669d67a" fill="#ffffff" viewBox="0 0 153.78 39"><defs><style>.uuid-c3a21cb0-cd3e-41bb-8da8-a78f7022417b{isolation:isolate;}.uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3{fill:#ffffff;}</style></defs><g class="uuid-c3a21cb0-cd3e-41bb-8da8-a78f7022417b"><path class="uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3" d="m8.58,11.7c2.61,0,4.5,1.2,5.49,2.64v-2.37h4.23v16.74c0,4.5-2.76,8.07-8.22,8.07-4.68,0-7.95-2.34-8.37-6.15h4.17c.42,1.5,1.98,2.49,4.08,2.49,2.31,0,4.11-1.32,4.11-4.41v-2.58c-.99,1.44-2.88,2.73-5.49,2.73-4.23,0-7.59-3.45-7.59-8.64s3.36-8.52,7.59-8.52Zm1.08,3.69c-2.25,0-4.38,1.68-4.38,4.83s2.13,4.95,4.38,4.95,4.41-1.74,4.41-4.89-2.1-4.89-4.41-4.89Z"/><path class="uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3" d="m45.66,19.41c0-2.64-1.47-4.02-3.69-4.02s-3.72,1.38-3.72,4.02v9.18h-4.2v-9.18c0-2.64-1.47-4.02-3.69-4.02s-3.75,1.38-3.75,4.02v9.18h-4.2V11.97h4.2v2.01c1.05-1.38,2.82-2.25,4.89-2.25,2.58,0,4.71,1.11,5.85,3.18,1.08-1.89,3.27-3.18,5.7-3.18,3.99,0,6.81,2.52,6.81,7.11v9.75h-4.2v-9.18Z"/><path class="uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3" d="m61.23,28.86c-4.8,0-8.43-3.36-8.43-8.58s3.75-8.58,8.55-8.58,8.55,3.33,8.55,8.58-3.84,8.58-8.67,8.58Zm0-3.66c2.22,0,4.35-1.62,4.35-4.92s-2.07-4.92-4.29-4.92-4.23,1.59-4.23,4.92,1.92,4.92,4.17,4.92Z"/><path class="uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3" d="m79.53,11.7c2.19,0,4.29,1.02,5.43,2.58v-7.89h4.26v22.2h-4.26v-2.46c-.99,1.53-2.85,2.73-5.46,2.73-4.23,0-7.59-3.45-7.59-8.64s3.36-8.52,7.62-8.52Zm1.05,3.69c-2.25,0-4.38,1.68-4.38,4.83s2.13,4.95,4.38,4.95,4.41-1.74,4.41-4.89-2.1-4.89-4.41-4.89Z"/><path class="uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3" d="m99.42,6.39v22.2h-6.66V6.39h6.66Z"/><path class="uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3" d="m105.7,28.02c-1.23-.52-2.21-1.24-2.93-2.16-.72-.92-1.13-1.96-1.23-3.12h6.39c.08.5.29.87.65,1.11.35.24.79.36,1.33.36.34,0,.61-.08.81-.23.2-.15.3-.33.3-.55,0-.38-.21-.65-.63-.81s-1.13-.34-2.13-.54c-1.22-.24-2.22-.5-3.01-.78s-1.48-.76-2.07-1.44c-.59-.68-.88-1.62-.88-2.82,0-1.04.27-1.99.83-2.83.55-.85,1.36-1.52,2.44-2.01s2.39-.74,3.93-.74c2.28,0,4.06.56,5.35,1.68s2.07,2.58,2.33,4.38h-5.91c-.1-.46-.31-.81-.63-1.06-.32-.25-.75-.38-1.29-.38-.34,0-.6.06-.78.19-.18.13-.27.33-.27.58,0,.34.21.6.63.77s1.09.34,2.01.52c1.22.24,2.25.51,3.09.81.84.3,1.57.82,2.19,1.55.62.73.93,1.74.93,3.01,0,1-.29,1.9-.87,2.7s-1.42,1.43-2.5,1.89c-1.09.46-2.37.69-3.83.69-1.6,0-3.01-.26-4.24-.78Z"/><path class="uuid-d6759ada-e45d-4d08-985c-c71dc4c4e4c3" d="m147.4,13.5c1.19,1.3,1.78,3.06,1.78,5.28v9.81h-6.63v-8.97c0-.72-.21-1.29-.64-1.7-.43-.41-1-.62-1.73-.62s-1.32.21-1.74.62c-.42.41-.63.97-.63,1.7v8.97h-6.63v-8.97c0-.72-.21-1.29-.64-1.7-.43-.41-1-.62-1.73-.62s-1.32.21-1.74.62c-.42.41-.63.97-.63,1.7v8.97h-6.66V11.67h6.66v2.28c.48-.72,1.13-1.3,1.96-1.74.83-.44,1.8-.66,2.92-.66,1.22,0,2.3.27,3.24.79.94.53,1.69,1.28,2.25,2.24.62-.88,1.41-1.61,2.37-2.17.96-.57,2.02-.86,3.18-.86,2.16,0,3.83.65,5.03,1.95Z"/></g></svg>
+        <h3 style="color: white" class="text-center mt-3">Something went wrong.</h3>
+        <p style="color: white" class="fs-5 mt-2">We checked, but this loading screen doesn't seem to exist....</p>
+      </span>
+    </div>
+    <div id="preloader" style="transition: background .5s; position: fixed; z-index: 100; width: 100%; height: 100%; top: 0; left: 0; background: #181818;">
+      <span class="indicator-progress" style="display: inline-block; position: absolute; left: 50%; top: 50%; margin-top: -22px; margin-left: -22px">
+        <span class="spinner-border spinner-border-sm align-middle" style="transition: border-color .5s; width: 44px; height: 44px; border-width: 2px; border-color: rgb(24,24,24) rgba(24,24,24,.1) rgba(24,24,24,.1);"></span>
+      </span>
+    </div>
+
+    <div style="position: fixed; z-index: 999999; left: 0; right: 0; bottom: 0; top: 0; background-color: white; display: none; justify-content: center; align-items: center;" class="demo-flex" id="demo-screen">
+      <div style="position: absolute; left: 50%; right: 50%; bottom: 50%; top: 50%; z-index: -1;" class="demo-background-two"></div>
+        <div style="position: absolute; left: 50%; right: 50%; bottom: 50%; top: 50%; z-index: -2;" class="demo-background"></div>
+      <a id="launch-button" onclick="demoStart()" href="#" class="btn btn-flex btn-primary px-6">
+          <span class="svg-icon svg-icon-2x"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.3" d="M22 8H8L12 4H19C19.6 4 20.2 4.39999 20.5 4.89999L22 8ZM3.5 19.1C3.8 19.7 4.4 20 5 20H12L16 16H2L3.5 19.1ZM19.1 20.5C19.7 20.2 20 19.6 20 19V12L16 8V22L19.1 20.5ZM4.9 3.5C4.3 3.8 4 4.4 4 5V12L8 16V2L4.9 3.5Z" fill="currentColor"/>
+              <path d="M22 8L20 12L16 8H22ZM8 16L4 12L2 16H8ZM16 16L12 20L16 22V16ZM8 8L12 4L8 2V8Z" fill="currentColor"/>
+              </svg></span>
+          <span class="d-flex flex-column align-items-start ms-2">
+              <span class="fs-3 fw-bold">Launch Demo</span>
+              <span class="fs-7">Look at your loading screen</span>
+          </span></a>
+    </div>
+
+    <!--begin::Main-->
+    <div style="display:none" class="background-part background1">
+      <img>
+    </div>
+    <div style="display:none" class="background-part background2">
+      <img>
+    </div>
+    <div id="layout-insert" style="height: 100%; z-index: 1; width: 100%; top: 0%; left: 0%; position: fixed; opacity: 0;">
+    </div>
+
+    <audio id='audio1' style="display:none" src="" type="audio/ogg" preload="auto" autobuffer></audio>
+
+    <!--end::Main-->
+    <!--begin::Javascript-->
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="https://layouts.gmod-lsm.com/assets/jquery.min.js"></script>
+    <!--end::Global Javascript Bundle-->
+    
+  <script src="script.js?v=302" async></script>
+    <!--end::Page Custom Javascript-->
+    <!--end::Javascript-->
+     <script> 
+     var isLiveMode = false;
+     var isEditMode = false;
+      var glassmode = 0;
+      var activefont;
+      var audio = document.getElementById('audio1');
+      function getParameterByName(name) {
+          var url = window.location.href;
+          name = name.replace(/[\[\]]/g, '\\$&');
+          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+
+      var rulecount = 1;
+      var staffcount = 1;
+
+      $(document).ready(function() {
+        if(String(navigator.userAgent).indexOf("GMod") == -1){
+          if(isLiveMode == false){
+            if(getParameterByName('i').includes("example")){
+              demoStart();
+            } else {
+              $('#demo-screen').fadeIn('fast');
+            }
+            document.title = 'Demo - gmod-lsm.com';
+          }
+        }
+      });
+
+      function demoStart(){
+        $('#launch-button').fadeOut('fast');
+        $('.demo-background').css('bottom',0).css('left',0).css('top',0).css('right',0);
+        setTimeout(function(){
+            $('.demo-background-two').css('bottom',0).css('left',0).css('top',0).css('right',0);
+            setTimeout(function(){
+              initScreen("76561198872173488",getParameterByName('i'),getParameterByName('d'));
+        },600);
+    },400);
+      }
+
+      function initScreen(userid, screenid, devmode){
+          globaluserid = userid;
+          var scrollersettings = 1;
+            var apiServer = "api/";
+            if(devmode == 1){
+              var apiServer = "https://dev.api.gmod-lsm.com/v2/";
+            }
+            $.ajax({ 
+                type: 'GET', 
+                url: apiServer+'screenGetLive.php',
+                data: { screen: screenid, user: userid  },
+                xhrFields: {
+                    
+                },
+                crossDomain: true,
+                dataType: 'json',
+                success: function (data) {
+                  if(data[0] == 0){
+                    $('#demo-screen').fadeOut('fast');
+                    $('#error').fadeIn();
+                    return;
+                  }
+                  if(JSON.parse(data[2][0]['Data_Customize'])['color-mode'] == 1){
+                    $('#preloader').css('background','#000');
+                    $('#preloader').find('.spinner-border').css('border-color','rgb(255,255,255) rgba(255,255,255,.1) rgba(255,255,255,.1)');
+                  }else{
+                    $('#preloader').css('background','#fff');
+                    $('#preloader').find('.spinner-border').css('border-color','rgb(24, 28, 50) rgba(0,0,0,.1) rgba(0,0,0,.1)');
+                  }
+                  setTimeout(function(){
+                    $('#demo-screen').fadeOut();
+                  },200);
+
+                  $('head').append('<link rel="stylesheet" href="'+data[2][0]['Font_Info'][1]+'">');
+
+                  $("#layout-insert").load(data[2][0]['Layout_File']+"?v=226",function() {
+                    setTimeout(function(){
+                      initLayout(JSON.parse(data[2][0]['Data_Layout'])['layout']);
+                      getActivity(screenid,userid,devmode);
+                    }, 0);
+
+
+                    if(isEditMode == false){
+                      $('.edit-hover').css('display','none');
+                    }
+
+
+
+                    var contentarray = JSON.parse(data[2][0]['Data_Content']);
+                    var backgroundarray = JSON.parse(data[2][0]['Data_Background']);
+                    var customizearray = JSON.parse(data[2][0]['Data_Customize']);
+                    var musicarray = JSON.parse(data[2][0]['Data_Music']);
+
+                    var screenscale = 100;
+
+                    if(customizearray['screen-scale'] != undefined){
+                      screenscale = customizearray['screen-scale'];
+                    }
+
+                    if(settings['screen-scale'] == true) {
+                      $('#layout-element').css('transform','scale('+(screenscale / 100)+')');
+                    }
+                    
+
+                    var newcontent = [];
+                    newcontent['one-line-text'] = [];
+                    newcontent['multi-line-text'] = [];
+                    newcontent['joining-user'] = userid;
+                    newcontent['staff-name-text'] = [];
+                    newcontent['staff-role-text'] = [];
+                    newcontent['rules-text'] = [];
+                    newcontent['image'] = [];
+                    for(var i = 0; i < 20; i++){
+
+                        if(contentarray['multi-line-text'][i] != undefined){
+                          contentarray['multi-line-text'][i] = contentarray['multi-line-text'][i].replace(/(\r\n|\n|\r)/gm, "<br>");
+                        }
+
+                        newcontent['one-line-text'][i] = contentarray['one-line-text'][i];
+                        newcontent['multi-line-text'][i] = contentarray['multi-line-text'][i];
+                        newcontent['staff-name-text'][i] = contentarray['staff-steamid-text'][i];
+                        newcontent['staff-role-text'][i] = contentarray['staff-role-text'][i];
+                        newcontent['rules-text'][i] = contentarray['rules-text'][i];
+                        newcontent['image'][i] = [data[2][0]['Image_Info'][contentarray['image'][i]],$('#insert-image-'+i).attr('data-type')];
+                        if(contentarray['rules-text'][i] != undefined){
+                          rulecount = i+1;
+                        }
+                        if(contentarray['staff-steamid-text'][i] != undefined){
+                          staffcount = i+1;
+                        }
+                    }
+
+                    newcontent['primary-color'] = customizearray['primary-color'];
+                    newcontent['font-color'] = customizearray['font-color'];
+                    newcontent['shadow'] = customizearray['shadow'];
+                    newcontent['border-radius'] = customizearray['border-radius'];
+                    newcontent['design-mode'] = customizearray['design-mode'];
+                    newcontent['color-mode'] = customizearray['color-mode'];
+                    newcontent['font-info'] = data[2][0]['Font_Info'];
+                    
+
+                    activefont = newcontent['font-info'][0];
+
+                    
+
+                    if(data[2][0]['Music_Info'].length > 0){
+
+                        var musicshuffle = 0;
+
+                        if(musicarray['music-settings'] != undefined){
+
+                        if(musicarray['music-settings']['shuffle'] == 1){
+                          musicshuffle = 1;
+                          data[2][0]['Music_Info'] = shuffle(data[2][0]['Music_Info']);
+                        }
+                      }
+
+                        var musiccounter = 0;
+                        audio.src=data[2][0]['Music_Info'][musiccounter][1];
+                        audio.play();
+                        audio.volume = data[2][0]['Music_Info'][musiccounter][3] / 100;
+                        if(data[2][0]['Music_Info'].length >= 1){
+                          musiccounter = 0;
+                          if(data[2][0]['Music_Info'].length >= 2){
+                            musiccounter = 1;
+                          }
+                          audio.onended = function() {
+                              audio.pause();
+                              audio.src=data[2][0]['Music_Info'][musiccounter][1];
+                              audio.volume = data[2][0]['Music_Info'][musiccounter][3] / 100;
+                              audio.play();
+                              musiccounter++;
+                              if(musiccounter >= data[2][0]['Music_Info'].length){
+                                musiccounter = 0;
+                                if(musicshuffle == 1){
+                                  data[2][0]['Music_Info'] = shuffle(data[2][0]['Music_Info']);
+                                }
+                              }
+                          };
+                        }
+                    }
+
+                    if(data[2][0]['Background_Info'][0] !== undefined){
+
+                      var backgroundshuffle = 0;
+                      if(backgroundarray['background-settings']['shuffle'] == 1){
+                        backgroundshuffle = 1;
+                        data[2][0]['Background_Info'] = shuffle(data[2][0]['Background_Info']);
+                      }
+
+                      $('.background1').css('z-index','-3');
+                       $('.background2').find('img').attr('src',data[2][0]['Background_Info'][0][1]);
+                       $('.background2').fadeIn(600,function(){
+                        $('.background1').fadeOut(100,function(){
+                          $('.background2').css('z-index','-3');
+                          $('.background1').css('z-index','-2');
+                        });
+                      });
+
+                     
+
+                      backgroundFade(1,data[2][0]['Background_Info'],1,Math.round(backgroundarray['background-settings']['delay'])*1000,backgroundshuffle);
+                    }
+
+                    if(backgroundarray['background-settings']['blur'] == 1){
+                      $('.background1').find('img:not(.no-filter)').css({
+                              'transform': 'scale(1.1)',
+                              'filter': 'blur(10px)',
+                              '-webkit-filter': 'blur(10px)',
+                              '-moz-filter': 'blur(10px)',
+                              '-o-filter': 'blur(10px)',
+                              '-ms-filter': 'blur(10px)'
+                          });
+                       $('.background2').find('img:not(.no-filter)').css({
+                              'transform': 'scale(1.1)',
+                              'filter': 'blur(10px)',
+                              '-webkit-filter': 'blur(10px)',
+                              '-moz-filter': 'blur(10px)',
+                              '-o-filter': 'blur(10px)',
+                              '-ms-filter': 'blur(10px)'
+                          });
+                          $('.background1').find('img.no-filter').css("transform","scale(1.1)");
+                          $('.background2').find('img.no-filter').css("transform","scale(1.1)");
+                    }
+                    if(backgroundarray['background-settings']['darken'] == 1){
+                      $('.background1').find('img:not(.no-filter)').css({
+                              'filter': 'brightness(50%)',
+                              '-webkit-filter': 'brightness(50%)',
+                              '-moz-filter': 'brightness(50%)',
+                              '-o-filter': 'brightness(50%)',
+                              '-ms-filter': 'brightness(50%)'
+                          });
+                       $('.background2').find('img:not(.no-filter)').css({
+                              'filter': 'brightness(50%)',
+                              '-webkit-filter': 'brightness(50%)',
+                              '-moz-filter': 'brightness(50%)',
+                              '-o-filter': 'brightness(50%)',
+                              '-ms-filter': 'brightness(50%)'
+                        });
+                        $('.background1').find('img.no-filter').css("filter","blur(20px) brightness(50%)");
+                        $('.background2').find('img.no-filter').css("filter","blur(20px) brightness(50%)");
+                    }
+                    if(backgroundarray['background-settings']['blur'] == 1 && backgroundarray['background-settings']['darken'] == 1){
+                      $('.background1').find('img:not(.no-filter)').css({
+                              'transform': 'scale(1.1)',
+                              'filter': 'blur(10px) brightness(50%)',
+                              '-webkit-filter': 'blur(10px) brightness(50%)',
+                              '-moz-filter': 'blur(10px) brightness(50%)',
+                              '-o-filter': 'blur(10px) brightness(50%)',
+                              '-ms-filter': 'blur(10px) brightness(50%)'
+                          });
+                       $('.background2').find('img:not(.no-filter)').css({
+                              'transform': 'scale(1.1)',
+                              'filter': 'blur(10px) brightness(50%)',
+                              '-webkit-filter': 'blur(10px) brightness(50%)',
+                              '-moz-filter': 'blur(10px) brightness(50%)',
+                              '-o-filter': 'blur(10px) brightness(50%)',
+                              '-ms-filter': 'blur(10px) brightness(50%)'
+                          });
+                    }
+
+                    if(data[2][0]['Pro'] == 0){
+                      $('.pro-element').fadeIn('fast');
+                      $('#layout-inner').removeClass('is-pro');
+                    } else {
+                      $('.pro-element').fadeOut('fast');
+                      $('#layout-inner').addClass('is-pro');
+                    }
+
+                    initLoaded(newcontent);
+                    setTimeout(function() { 
+                      $('#layout-insert').css('opacity',1);
+                      $('#preloader').fadeOut(1000);
+                    }, 800);
+                    setTimeout(function() { 
+                          if(isLiveMode == false){
+                            initProgressBarPreview();
+                          }
+                          initScrollers();
+                    }, 1000);
+                  });
+                }
+            });
+      }
+      </script> 
+      <script>
+        function upgradeToProMessage(){
+
+        }
+
+        function explainUserElement(){
+
+        }
+
+        function shuffle(a) {
+          var j, x, i;
+          for (i = a.length - 1; i > 0; i--) {
+              j = Math.floor(Math.random() * (i + 1));
+              x = a[i];
+              a[i] = a[j];
+              a[j] = x;
+          }
+          return a;
+      }
+
+        function backgroundFade(type,images,index,wait,shuffle){
+          if(images[1] !== undefined){
+              var newindex;
+              if(images[index+1] === undefined){
+                if(shuffle == 1){
+                  a = images
+                  var j, x, i;
+                  for (i = a.length - 1; i > 0; i--) {
+                      j = Math.floor(Math.random() * (i + 1));
+                      x = a[i];
+                      a[i] = a[j];
+                      a[j] = x;
+                  }
+                  images = a;
+                }
+                newindex = 0;
+              }else{
+                newindex = index + 1;
+              }
+              if(type == 0){
+                //Background1 is active -> Change to 2
+                 $('.background1').css('z-index','-3');
+                 $('.background2').find('img').attr('src',images[index][1]);
+                 setTimeout(function () {
+                 $('.background2').fadeIn(imageFadeDuration,function(){
+                  $('.background1').fadeOut(imageFadeDuration,function(){
+                    $('.background1').css('display', 'none');
+                    $('.background2').css('z-index','-3');
+                    $('.background1').css('z-index','-2');
+                    backgroundFade(1,images,newindex,wait,shuffle);
+                  });
+                });
+                },wait);
+              }else{
+                //Background2 is active -> Change to 1
+                $('.background2').css('z-index','-3');
+                $('.background1').find('img').attr('src',images[index][1]);
+                setTimeout(function () {
+                $('.background1').fadeIn(imageFadeDuration,function(){
+                  $('.background2').fadeOut(imageFadeDuration,function(){
+                    $('.background2').css('display', 'none');
+                    $('.background1').css('z-index','-3');
+                    $('.background2').css('z-index','-2');
+                    backgroundFade(0,images,newindex,wait,shuffle);
+                  });
+                });
+              },wait);
+              }
+             
+            
+          }
+        }
+
+
+        function getActivity(sid,uid,devmode){
+          var apiServer = "api/";
+            if(devmode == 1){
+              var apiServer = "https://dev.api.gmod-lsm.com/v2/";
+            }
+            $.ajax({ 
+                type: 'GET', 
+                url: 'https://api.codetabs.com/v1/proxy/?quest='+encodeURIComponent(`https://api.gmod-lsm.com/v2/screenGetLiveActivity.php?sid=${sid}&uid=${uid}`),
+                
+                xhrFields: {
+                    
+                },
+                crossDomain: true,
+                dataType: 'json',
+                success: function (data) {
+                  setActivityContent(data);
+                  viewid = data[2];
+              }
+            });
+        }
+
+        var viewid = 0;
+
+        function sendLoadingTime(uid,devmode){
+          var apiServer = "api/";
+            if(devmode == 1){
+              var apiServer = "https://dev.api.gmod-lsm.com/v2/";
+            }
+            $.ajax({ 
+                type: 'GET', 
+                url: 'https://api.codetabs.com/v1/proxy/?quest='+encodeURIComponent(`https://api.gmod-lsm.com/v2/screenLogJoiningTime.php?id=${viewid}&uid=${uid}`),
+                
+                xhrFields: {
+                    
+                },
+                crossDomain: true,
+                dataType: 'json',
+                success: function (data) {
+
+              }
+            });
+        }
+
+
+function refreshProgress() {
+  progress = Math.floor(((downloadedFiles / neededFiles)*80));
+
+  setProgress(progress);
+}
+
+function setProgress(progress) {
+  $("#progress-element-bar").css("width", (1+progress) + "%");
+  if(progress <= 90){
+      $('#progress-element-counter').text(Math.round(progress) + "%");
+    }else{
+      $('#progress-element-counter').fadeOut('fast');
+      $('#progress-element-counter').parent().find('svg').fadeOut('fast');
+      $('#progress-element-check').fadeIn('fast');
+    }
+}
+
+var totalfiles = 10000;
+var mountingaddons = false;
+
+var imageFadeDuration = 400;
+
+function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
+  isLiveMode = true;
+  imageFadeDuration = 2;
+  initScreen(steamid,getParameterByName('i'),getParameterByName('d'));
+  document.title = "Live - gmod-lsm.com";
+}
+
+var globaluserid = 0;
+
+function SetStatusChanged( status ) {
+  if(status == "Mounting Addons"){
+    mountingaddons = true;
+  }
+  if(status == "Mounting Addons"){
+    mountingaddons = true;
+    setProgress(50);
+  }
+  if(status == "Workshop Complete"){
+    mountingaddons = true;
+    setProgress(50);
+  }
+  if(status == "Client info sent!"){
+    mountingaddons = true;
+    <!-- sendLoadingTime(globaluserid,0); -->
+    setProgress(92);
+  }
+  if(status == "Starting Lua..."){
+    mountingaddons = true;
+    setProgress(99);
+  }
+  if(status.indexOf("/") !== -1){
+    var statusarray = status.split("/");
+    downloadedFiles = statusarray[0];
+    neededFiles = statusarray[1].split(" ")[0];
+    var offset = 20;
+    if(mountingaddons == true){
+      offset = 50;
+    }
+    var percent = ((downloadedFiles / neededFiles) * 100) / 3;
+    setProgress(offset+percent);
+  }
+}
+
+
+
+
+      </script>
+  </body>
+  <!--end::Body-->
+</html>
